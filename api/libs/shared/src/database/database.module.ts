@@ -26,6 +26,7 @@ export class DatabaseModule {
               ...options,
               entities,
               synchronize: true,
+              // migrations: ['./dist/app/auth/src/migration/*.{js,ts}'],
             };
           },
           inject: [ConfigService],

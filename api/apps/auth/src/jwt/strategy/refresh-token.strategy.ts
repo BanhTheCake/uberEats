@@ -6,6 +6,7 @@ import { ExtractJwt, Strategy } from 'passport-jwt';
 import { UserServices } from '../../user/user.services';
 import { RefreshTokenDto } from '../dto/refreshToken.dto';
 import { UserEntity } from '../../user/user.entity';
+import { IUser } from '../../user/interface/user.interface';
 
 @Injectable()
 export class RefreshTokenStrategy extends PassportStrategy(
@@ -34,7 +35,7 @@ export class RefreshTokenStrategy extends PassportStrategy(
     return refreshToken;
   }
 
-  async validateToken(token: string): Promise<[UserEntity, boolean]> {
+  async validateToken(token: string): Promise<[IUser, boolean]> {
     const user = await this.userServices.findOne({ refreshToken: token });
     if (user) {
       return [user, false];

@@ -5,35 +5,27 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   ManyToMany,
-  JoinTable,
 } from 'typeorm';
-import { RoleEntity } from '../role/role.entity';
+import { ROLES } from './roles.enum';
+import { UserEntity } from '../user/user.entity';
 
 @Entity({
-  name: 'user',
+  name: 'role',
 })
-export class UserEntity {
+export class RoleEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
-  firstName: string;
+  @Column({
+    type: 'enum',
+    enum: ROLES,
+    default: ROLES.SYSTEM_USER,
+    unique: true,
+  })
+  role: ROLES;
 
-  @Column()
-  lastName: string;
-
-  @Column()
-  username: string;
-
-  @Column({ select: false })
-  password: string;
-
-  @Column({ select: false, default: '' })
-  refreshToken: string;
-
-  @ManyToMany((type) => RoleEntity, (role) => role.users)
-  @JoinTable()
-  roles: RoleEntity[];
+  @ManyToMany((type) => UserEntity, (user) => user.roles)
+  users: UserEntity[];
 
   @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   created_at: Date;

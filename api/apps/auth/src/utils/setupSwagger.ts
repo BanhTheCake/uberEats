@@ -5,6 +5,17 @@ const setupSwagger = (app: INestApplication) => {
   const config = new DocumentBuilder()
     .setTitle('Auth')
     .setVersion('1.0')
+    .addBearerAuth(
+      {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+        in: 'header',
+        description:
+          'Enter the token with the `Bearer: ` prefix, e.g. "Bearer abcde12345".',
+      },
+      'JWT-auth',
+    )
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('docs', app, document);

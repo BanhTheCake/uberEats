@@ -4,7 +4,7 @@
   "sourceRoot": "apps/auth/src",
   "compilerOptions": {
     "deleteOutDir": true,
-    "webpack": true,
+    "webpack": false,
     "tsConfigPath": "apps/auth/tsconfig.app.json"
   },
   "monorepo": true,

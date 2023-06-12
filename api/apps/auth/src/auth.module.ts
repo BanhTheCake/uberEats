@@ -6,15 +6,18 @@ import { ConfigModule } from '@nestjs/config';
 import { UserModule } from './user/user.module';
 import { UserEntity } from './user/user.entity';
 import { JwtModule } from './jwt/jwt.module';
+import { RoleModule } from './role/role.module';
+import { RoleEntity } from './role/role.entity';
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: './apps/auth/.env',
     }),
-    DatabaseModule.register([UserEntity]),
+    DatabaseModule.register([UserEntity, RoleEntity]),
     UserModule,
     JwtModule,
+    RoleModule,
   ],
   controllers: [AuthController],
   providers: [AuthService],
