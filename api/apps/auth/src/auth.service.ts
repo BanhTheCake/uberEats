@@ -16,7 +16,7 @@ export class AuthService {
   ) {}
 
   getHello(): string {
-    return 'Hello World!';
+    return 'Hello World from authServices!';
   }
 
   async login(data: LoginRequestDto, res: Response) {

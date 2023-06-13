@@ -4,14 +4,14 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  ManyToMany,
-  JoinTable,
+  ManyToOne,
 } from 'typeorm';
+import { RestaurantEntity } from './restaurant.entity';
 
 @Entity({
-  name: 'restaurant',
+  name: 'dish',
 })
-export class UserEntity {
+export class DishEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -21,26 +21,20 @@ export class UserEntity {
   @Column({ type: 'text' })
   description: string;
 
-  @Column()
-  cuisine: string;
+  @Column({ type: 'integer' })
+  price: number;
 
   @Column()
-  contact_number: string;
+  category: string;
 
   @Column()
-  open_at: string;
+  food_type: string;
 
-  @Column()
-  close_at: string;
-
-  @Column()
-  delivery_option: string;
-
-  @Column()
-  pickup_option: string;
+  @Column({ type: 'text' })
+  ingredients: string;
 
   @Column({ type: 'jsonb', array: false, default: () => "'[]'" })
-  image_url: Array<string>;
+  thumbnails: Array<string>;
 
   @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   created_at: Date;
@@ -51,4 +45,7 @@ export class UserEntity {
     onUpdate: 'CURRENT_TIMESTAMP',
   })
   updated_at: Date;
+
+  @ManyToOne((type) => RestaurantEntity, (restaurant) => restaurant.dishes)
+  restaurant: RestaurantEntity;
 }

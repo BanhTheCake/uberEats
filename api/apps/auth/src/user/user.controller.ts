@@ -6,13 +6,10 @@ import {
   ApiOkResponse,
   ApiInternalServerErrorResponse,
   ApiBearerAuth,
-  ApiBadGatewayResponse,
   ApiBadRequestResponse,
 } from '@nestjs/swagger';
 import { GetUserResponse } from './dto/get-all-response.dto';
 import { AccessTokenGuard } from '../jwt/guard/access-token.guard';
-import { CurrentUser } from '@app/shared';
-import { IUser } from './interface/user.interface';
 import { UpdateRolesRequestDto } from './dto/update-roles-request.dto';
 import { RolesGuard } from '../role/guard/roles.guard';
 import { Roles } from '../role/decorator/role.decorator';

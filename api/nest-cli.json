@@ -27,6 +27,24 @@
       "compilerOptions": {
         "tsConfigPath": "libs/shared/tsconfig.lib.json"
       }
+    },
+    "proxy": {
+      "type": "application",
+      "root": "apps/proxy",
+      "entryFile": "main",
+      "sourceRoot": "apps/proxy/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/proxy/tsconfig.app.json"
+      }
+    },
+    "restaurant": {
+      "type": "application",
+      "root": "apps/restaurant",
+      "entryFile": "main",
+      "sourceRoot": "apps/restaurant/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/restaurant/tsconfig.app.json"
+      }
     }
   }
 }

@@ -23,7 +23,6 @@ import { RefreshTokenResponseDto } from './dto/refresh-token-response.dto';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @UseGuards(RefreshTokenGuard)
   @Get()
   getHello(): string {
     return this.authService.getHello();

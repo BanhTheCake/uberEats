@@ -4,14 +4,16 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  ManyToMany,
-  JoinTable,
+  OneToOne,
+  OneToMany,
 } from 'typeorm';
+import { RestaurantAddressEntity } from './restaurant_adress.entity';
+import { DishEntity } from './dish.entity';
 
 @Entity({
   name: 'restaurant',
 })
-export class UserEntity {
+export class RestaurantEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -51,4 +53,7 @@ export class UserEntity {
     onUpdate: 'CURRENT_TIMESTAMP',
   })
   updated_at: Date;
+
+  @OneToMany((type) => DishEntity, (dish) => dish.restaurant)
+  dishes: DishEntity[];
 }

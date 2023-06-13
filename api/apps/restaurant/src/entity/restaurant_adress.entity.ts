@@ -6,41 +6,35 @@ import {
   UpdateDateColumn,
   ManyToMany,
   JoinTable,
+  OneToOne,
+  JoinColumn,
 } from 'typeorm';
+import { RestaurantEntity } from './restaurant.entity';
 
 @Entity({
-  name: 'restaurant',
+  name: 'restaurant_address',
 })
-export class UserEntity {
+export class RestaurantAddressEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
-  name: string;
+  house_number: string;
 
   @Column({ type: 'text' })
-  description: string;
+  street: string;
 
   @Column()
-  cuisine: string;
+  city: string;
 
   @Column()
-  contact_number: string;
+  state: string;
 
   @Column()
-  open_at: string;
+  country: string;
 
   @Column()
-  close_at: string;
-
-  @Column()
-  delivery_option: string;
-
-  @Column()
-  pickup_option: string;
-
-  @Column({ type: 'jsonb', array: false, default: () => "'[]'" })
-  image_url: Array<string>;
+  pin_code: string;
 
   @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   created_at: Date;
@@ -51,4 +45,8 @@ export class UserEntity {
     onUpdate: 'CURRENT_TIMESTAMP',
   })
   updated_at: Date;
+
+  @OneToOne((type) => RestaurantEntity)
+  @JoinColumn({ name: 'restaurant_id', referencedColumnName: 'id' })
+  restaurant: RestaurantEntity;
 }

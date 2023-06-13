@@ -34,6 +34,8 @@ export class RoleController {
     const data: DeepPartial<RoleEntity>[] = [
       { role: ROLES.SYSTEM_ADMIN },
       { role: ROLES.SYSTEM_USER },
+      { role: ROLES.RESTAURANT_ADMIN },
+      { role: ROLES.RESTAURANT_USER },
     ];
     return this.roleServices.createMany(data);
   }
