@@ -7,6 +7,7 @@ import {
   ManyToMany,
   JoinTable,
 } from 'typeorm';
+import { RoleEntity } from '../role/role.entity';
 
 @Entity({
   name: 'restaurant',
@@ -16,31 +17,23 @@ export class UserEntity {
   id: string;
 
   @Column()
-  name: string;
-
-  @Column({ type: 'text' })
-  description: string;
+  firstName: string;
 
   @Column()
-  cuisine: string;
+  lastName: string;
 
   @Column()
-  contact_number: string;
+  username: string;
 
-  @Column()
-  open_at: string;
+  @Column({ select: false })
+  password: string;
 
-  @Column()
-  close_at: string;
+  @Column({ select: false, default: '' })
+  refreshToken: string;
 
-  @Column()
-  delivery_option: string;
-
-  @Column()
-  pickup_option: string;
-
-  @Column({ type: 'jsonb', array: false, default: () => "'[]'" })
-  image_url: Array<string>;
+  @ManyToMany((type) => RoleEntity, (role) => role.users)
+  @JoinTable()
+  roles: RoleEntity[];
 
   @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   created_at: Date;

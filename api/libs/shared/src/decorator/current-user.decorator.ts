@@ -7,6 +7,10 @@ export const CurrentUser = createParamDecorator(
       const request: Request = ctx.switchToHttp().getRequest();
       return request.user;
     }
+    if (ctx.getType() === 'rpc') {
+      const data = ctx.switchToRpc().getData();
+      return data.user;
+    }
     return null;
   },
 );

@@ -4,10 +4,8 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToOne,
   OneToMany,
 } from 'typeorm';
-import { RestaurantAddressEntity } from './restaurant_adress.entity';
 import { DishEntity } from './dish.entity';
 
 @Entity({

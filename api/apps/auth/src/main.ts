@@ -3,6 +3,9 @@ import { AuthModule } from './auth.module';
 import { ValidationPipe } from '@nestjs/common';
 import setupSwagger from './utils/setupSwagger';
 import * as cookieParser from 'cookie-parser';
+import { MicroserviceOptions, Transport } from '@nestjs/microservices';
+import { ConfigService } from '@nestjs/config';
+import { RabbitmqServices } from '@app/shared';
 
 async function bootstrap() {
   const app = await NestFactory.create(AuthModule);
@@ -13,8 +16,15 @@ async function bootstrap() {
       whitelist: true,
     }),
   );
+
   app.setGlobalPrefix('/api/v1');
   setupSwagger(app);
-  await app.listen(3000);
+
+  const rabbitmqServices = app.get<RabbitmqServices>(RabbitmqServices);
+  //
+  app.connectMicroservice<MicroserviceOptions>(
+    rabbitmqServices.getOptions('auth-query', true),
+  );
+  await Promise.all([app.startAllMicroservices(), app.listen(3000)]);
 }
 bootstrap();

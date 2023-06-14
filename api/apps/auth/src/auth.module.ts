@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
-import { DatabaseModule } from '@app/shared';
+import { DatabaseModule, RabbitmqModule } from '@app/shared';
 import { ConfigModule } from '@nestjs/config';
 import { UserModule } from './user/user.module';
 import { UserEntity } from './user/user.entity';
@@ -18,6 +18,7 @@ import { RoleEntity } from './role/role.entity';
     UserModule,
     JwtModule,
     RoleModule,
+    RabbitmqModule,
   ],
   controllers: [AuthController],
   providers: [AuthService],

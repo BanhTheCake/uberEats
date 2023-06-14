@@ -17,6 +17,8 @@ import { RefreshTokenGuard } from './jwt/guard/refresh-token.guard';
 import { CurrentUser } from '@app/shared';
 import { UserEntity } from './user/user.entity';
 import { RefreshTokenResponseDto } from './dto/refresh-token-response.dto';
+import { MessagePattern } from '@nestjs/microservices';
+import { MicroservicesTokenGuard } from './jwt/guard/microservices.guard';
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -98,5 +100,11 @@ export class AuthController {
     @Res({ passthrough: true }) res: Response,
   ) {
     return this.authService.refreshToken(user, res);
+  }
+
+  @UseGuards(MicroservicesTokenGuard)
+  @MessagePattern({ cmd: 'verify' })
+  getHelloPattern(@CurrentUser() user: any) {
+    return user;
   }
 }
