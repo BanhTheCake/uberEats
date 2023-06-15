@@ -3,8 +3,7 @@ import { AuthModule } from './auth.module';
 import { ValidationPipe } from '@nestjs/common';
 import setupSwagger from './utils/setupSwagger';
 import * as cookieParser from 'cookie-parser';
-import { MicroserviceOptions, Transport } from '@nestjs/microservices';
-import { ConfigService } from '@nestjs/config';
+import { MicroserviceOptions } from '@nestjs/microservices';
 import { RabbitmqServices } from '@app/shared';
 
 async function bootstrap() {

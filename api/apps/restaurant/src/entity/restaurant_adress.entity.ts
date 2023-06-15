@@ -46,7 +46,7 @@ export class RestaurantAddressEntity {
   })
   updated_at: Date;
 
-  @OneToOne((type) => RestaurantEntity)
+  @OneToOne((type) => RestaurantEntity, (restaurant) => restaurant.address)
   @JoinColumn({ name: 'restaurant_id', referencedColumnName: 'id' })
   restaurant: RestaurantEntity;
 }

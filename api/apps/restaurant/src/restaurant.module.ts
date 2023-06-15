@@ -1,11 +1,11 @@
 import { ConfigModule } from '@nestjs/config';
 import { Module } from '@nestjs/common';
-import { RestaurantController } from './restaurant.controller';
-import { RestaurantService } from './restaurant.service';
 import { DatabaseModule, RabbitmqModule, AuthCommonModule } from '@app/shared';
 import { RestaurantEntity } from './entity/restaurant.entity';
 import { RestaurantAddressEntity } from './entity/restaurant_adress.entity';
 import { DishEntity } from './entity/dish.entity';
+import { RestaModule } from './resta/resta.module';
+import { AddressModule } from './address/address.module';
 
 @Module({
   imports: [
@@ -19,9 +19,10 @@ import { DishEntity } from './entity/dish.entity';
       DishEntity,
     ]),
     RabbitmqModule.register('AUTH_SERVICES', 'auth-query'),
-    AuthCommonModule,
+    RestaModule,
+    AddressModule,
   ],
-  controllers: [RestaurantController],
-  providers: [RestaurantService],
+  controllers: [],
+  providers: [],
 })
 export class RestaurantModule {}

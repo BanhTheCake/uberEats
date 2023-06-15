@@ -10,7 +10,7 @@ import {
 import { RoleEntity } from '../role/role.entity';
 
 @Entity({
-  name: 'restaurant',
+  name: 'user',
 })
 export class UserEntity {
   @PrimaryGeneratedColumn('uuid')

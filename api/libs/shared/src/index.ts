@@ -6,3 +6,4 @@ export * from './rabbitmq/rabbitmq.module';
 export * from './rabbitmq/rabbitmq.services';
 export * from './auth/auth.module';
 export * from './auth/jwt-auth.guard';
+export * from './auth/auth.interface';
