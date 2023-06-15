@@ -11,7 +11,7 @@ async function bootstrap() {
       whitelist: true,
     }),
   );
-  app.setGlobalPrefix('/api/v1');
+  app.setGlobalPrefix('/api/v1/restaurant');
   setupSwagger(app);
   await app.listen(3001);
 }

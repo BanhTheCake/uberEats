@@ -15,7 +15,14 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { CreateNewRequestDto } from './dto/create-new-request.dto';
-import { CurrentUser, IUser, JwtAuthGuard } from '@app/shared';
+import {
+  CurrentUser,
+  IUser,
+  JwtAuthGuard,
+  ROLES,
+  Roles,
+  RolesGuard,
+} from '@app/shared';
 import { CreateNewResponseDto } from './dto/create-new-response.dto';
 
 @ApiTags('restaurants')
@@ -23,6 +30,9 @@ import { CreateNewResponseDto } from './dto/create-new-response.dto';
 export class RestaController {
   constructor(private restaServices: RestaServices) {}
 
+  @Roles(ROLES.RESTAURANT_ADMIN)
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @ApiBearerAuth('JWT-auth')
   @Get('hello')
   getHello() {
     return 'hello';

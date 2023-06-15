@@ -6,6 +6,7 @@ import { RestaurantAddressEntity } from './entity/restaurant_adress.entity';
 import { DishEntity } from './entity/dish.entity';
 import { RestaModule } from './resta/resta.module';
 import { AddressModule } from './address/address.module';
+import { DishModule } from './dish/dish.module';
 
 @Module({
   imports: [
@@ -21,6 +22,8 @@ import { AddressModule } from './address/address.module';
     RabbitmqModule.register('AUTH_SERVICES', 'auth-query'),
     RestaModule,
     AddressModule,
+    AuthCommonModule,
+    DishModule,
   ],
   controllers: [],
   providers: [],

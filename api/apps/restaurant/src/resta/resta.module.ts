@@ -11,7 +11,6 @@ import { RestaurantAddressEntity } from '../entity/restaurant_adress.entity';
 @Module({
   imports: [
     TypeOrmModule.forFeature([RestaurantEntity, RestaurantAddressEntity]),
-    AuthCommonModule,
     AddressModule,
   ],
   controllers: [RestaController],

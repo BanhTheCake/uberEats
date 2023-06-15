@@ -4,6 +4,7 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  DeleteDateColumn,
   ManyToOne,
 } from 'typeorm';
 import { RestaurantEntity } from './restaurant.entity';
@@ -30,11 +31,11 @@ export class DishEntity {
   @Column()
   food_type: string;
 
-  @Column({ type: 'text' })
-  ingredients: string;
+  @Column({ type: 'jsonb', array: false, default: () => "'[]'" })
+  ingredients: string[];
 
   @Column({ type: 'jsonb', array: false, default: () => "'[]'" })
-  thumbnails: Array<string>;
+  thumbnails: string[];
 
   @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   created_at: Date;
@@ -45,6 +46,9 @@ export class DishEntity {
     onUpdate: 'CURRENT_TIMESTAMP',
   })
   updated_at: Date;
+
+  @DeleteDateColumn({ select: false })
+  deleted_at: Date;
 
   @ManyToOne((type) => RestaurantEntity, (restaurant) => restaurant.dishes)
   restaurant: RestaurantEntity;

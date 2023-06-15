@@ -7,3 +7,6 @@ export * from './rabbitmq/rabbitmq.services';
 export * from './auth/auth.module';
 export * from './auth/jwt-auth.guard';
 export * from './auth/auth.interface';
+export * from './auth/roles.decorator';
+export * from './auth/roles.enum';
+export * from './auth/roles.guard';
